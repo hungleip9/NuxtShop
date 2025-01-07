@@ -1,0 +1,12 @@
+body {
+  background-color: var(--background);
+}
+.borderC {
+  border: 1px solid red;
+}
+.hv-active {
+  cursor: pointer;
+  &:hover {
+    color: #409eff;
+  }
+}

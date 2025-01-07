@@ -10,8 +10,17 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@element-plus/icons-vue": "^2.3.1",
+    "@element-plus/nuxt": "^1.1.1",
+    "@nuxtjs/color-mode": "^3.5.2",
+    "@nuxtjs/i18n": "^9.1.1",
+    "element-plus": "^2.9.2",
     "nuxt": "^3.15.1",
+    "tailwindcss": "^3.4.17",
     "vue": "latest",
     "vue-router": "latest"
+  },
+  "devDependencies": {
+    "sass-embedded": "^1.83.1"
   }
 }
