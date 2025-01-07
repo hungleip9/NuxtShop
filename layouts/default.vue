@@ -1,32 +1,38 @@
 <template>
-  <div class="common-layout h-full">
-    <el-container class="w-full h-full">
-      <el-header height="80px" class="border sticky top-0 left-0 z-1000"><Header /></el-header>
-      <el-container>
-        <el-aside :width="useGlobal().value.showSidebar ? '250px' : '60px'" class="border"><Sidebar /></el-aside>
-        <el-main class="border overflow-auto max-h-[calc(100vh-80px)]">
-          <slot />
-          <el-footer class="borderC h-[250px]">
-            <Footer />
-          </el-footer>
-        </el-main>
-      </el-container>
-    </el-container>
+  <div class="w-full h-full bg-themeBackground">
+    <a-style-provider hash-priority="high">
+    </a-style-provider>
   </div>
 </template>
+<script lang="ts" setup>
 
-<script setup>
+const darkMode = useState("theme", () => true);
+const theme = _useCookie('theme') as any
+const setTheme = (newTheme: string) => {
+  theme.value = newTheme
+  useConst().value.theme = newTheme;
+  const body = document.body;
+  if (darkMode.value) {
+    body.classList.add("theme-dark");
+    body.classList.remove("theme-light");
+  } else {
+    body.classList.add("theme-light");
+    body.classList.remove("theme-dark");
+  }
+  return;
+};
+onMounted(async () => {
+  darkMode.value = theme.value == "dark" ? true : false;
+  if (!useConst().value.activeSidebar) {
+    useConst().value.activeSidebar =
+      keyLocalStorage({ type: "GET", key: "activeSidebar" }) || "SideBarVnindex";
+  }
+});
+
+watch(darkMode, (selected) => {
+  setTheme(selected ? "dark" : "light");
+});
 </script>
 
 <style lang="scss" scoped>
-header {
-  background-color: var(--background);
-  padding: 5px 10px;
-}
-aside {
-  padding: 5px 10px;
-}
-main {
-  padding: 5px 100px;
-}
 </style>

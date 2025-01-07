@@ -1,0 +1,21 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": [
+          "UMAWR4S7CA.com.stockproxx.lequangchau"
+        ],
+        "components": [
+          {
+            "/": "/*"
+          }
+        ]
+      }
+    ]
+  },
+  "webcredentials": {
+    "apps": [
+      "UMAWR4S7CA.com.stockproxx.lequangchau"
+    ]
+  }
+}

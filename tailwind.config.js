@@ -1,6 +1,5 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  important: true,
   content: [
     "./components/**/*.{js,vue,ts}",
     "./layouts/**/*.vue",
@@ -9,6 +8,7 @@ module.exports = {
     "./nuxt.config.{js,ts}",
     "./app.vue",
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       gridTemplateColumns: {
@@ -24,5 +24,5 @@ module.exports = {
       },
     },
   },
-  plugins: []
+  plugins: [],
 }

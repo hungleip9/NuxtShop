@@ -1,0 +1,16 @@
+export interface ArrRelatedNews {
+    NewsId: number,
+    Title: string,
+    Summary: string,
+    MetaTitle: string,
+    MetaKeywords: string,
+    StockCode: string,
+    MetaDescription: string,
+    Thumbnail: string,
+    PostDate: Date,
+    Hit: number,
+    Type: number,
+    TypeName: string,
+    NewsCategoryId: number,
+    NewsCategoryName: string,
+}

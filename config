@@ -1,0 +1,13 @@
+NUXT_PUBLIC_BASE_URL_NEWS="https://news.stockproxx.com"
+NUXT_PUBLIC_BASE_URL_AUTH="https://auth.stockproxx.com"
+NUXT_PUBLIC_BASE_URL_ECONOMIC="https://economic.stockproxx.com"
+NUXT_PUBLIC_BASE_URL_STOCKEXCHANGE="https://exchange.stockproxx.com"
+NUXT_PUBLIC_FILE_S3URL="https://cdn.stockproxx.com"
+NUXT_PUBLIC_CONNECT_WEBSOCKETURL="wss://mqtt.stockproxx.com:8084/mqtt"
+NUXT_PUBLIC_TIME_SHOW_POPUP="15"
+NUXT_PUBLIC_LOGO="https://cdn.stockproxx.com/resource/logo-stockproxx.png"
+NUXT_PUBLIC_VERSION="webapp_1.5.0"
+NUXT_PUBLIC_FIRE_BASE_CONFIG={"apiKey":"AIzaSyCIjiIPM7mboXuJE-Bw3X083uDV1tr36fA","authDomain":"stockproxx-618a7.firebaseapp.com","projectId":"stockproxx-618a7","storageBucket":"stockproxx-618a7.appspot.com","messagingSenderId":"529503149074","appId":"1:529503149074:web:5a34baeb87440d320a4ccb","measurementId":"G-PNVDMZ8H4G"}
+NUXT_PUBLIC_TOPIC=["stockdata","ws$commodities","ws$indices-data","bigvol-matching","stock-ta-realtime"]
+NUXT_PUBLIC_QOS="1"
+NUXT_PUBLIC_TIME_RECONNECT_MQTT="300"
