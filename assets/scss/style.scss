@@ -6,24 +6,9 @@ body {
     height: 100%;
   }
 }
-.theme-light {
-  --text-flash: #fff;
-  --flash-bg-fl: #00cccc;
-  --flash-bg-down: #f6465d;
-  --flash-bg-ref: #c7c919;
-  --flash-bg-up: #0ba76b;
-  --flash-bg-ce: #ff00ff;
-}
-
-.theme-dark {
-  --text-flash: #fff;
-  --flash-bg-fl: #00cccc;
-  --flash-bg-down: #f6465d;
-  --flash-bg-ref: #c7c919;
-  --flash-bg-up: #0ECB81;
-  --flash-bg-ce: #ff00ff;
-}
-
 .borderC {
   border: 1px solid red;
+}
+a {
+  color: unset!important;
 }

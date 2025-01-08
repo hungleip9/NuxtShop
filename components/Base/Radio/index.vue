@@ -95,13 +95,9 @@ const props = defineProps({
     if (!item) return
     const val = item.value
     if (item.permission && !hasRule(item.permission)) {
-      if (!useAuth().value.isAuthenticated) {
-        _openModalLogin('login')
-      } else {
-        permission.value = item.permission
-        await nextTick()
-        _openModal(`popup-upgred-user-${item.permission}`)
-      }
+      permission.value = item.permission
+      await nextTick()
+      _openModal(`popup-upgred-user-${item.permission}`)
     } else { // có quyền
       if (props.unset && val === props.modelValue) { // mở unset
         emit('update:modelValue', null)

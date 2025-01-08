@@ -99,13 +99,6 @@ async function updateValue(item: Option) {
   if (!item) return
   const val = item.value
   if (item.permission && !hasRule(item.permission)) {
-    if (!useAuth().value.isAuthenticated) {
-      _openModalLogin('login')
-    } else {
-      permission.value = item.permission
-      await nextTick()
-      _openModal(`popup-upgred-user-${item.permission}`)
-    }
   } else {
     let data = props.modelValue && props.modelValue.length ? [...props.modelValue] : []
     if (props.fakeRadio) {

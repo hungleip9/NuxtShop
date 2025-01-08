@@ -15,13 +15,9 @@ export default defineNuxtPlugin(() => {
     keyLocalStorage({ type: 'SET', key: 'theme', value: '' });
   }
   useConst().value.theme = theme.value || 'dark';
-  useAuth().value.isAuthenticated = token.value ? true : false;
-  const config = useRuntimeConfig();
-  const spVersion = config.public.version || 'webapp_1.5.0';
   const api = axios.create({
     headers: {
-      spDevice: 'Webapp',
-      spVersion: spVersion
+      spDevice: 'Webapp'
     }
   });
   let isRefreshToken = false;
@@ -43,26 +39,6 @@ export default defineNuxtPlugin(() => {
         logout();
         isRefreshToken = false;
         return;
-        const getLastRefresh = _useCookie('refresh') as any;
-        if (getLastRefresh.value) {
-          try {
-            // Tạo instance axios riêng biệt cho việc refresh token
-            const refreshApi = axios.create();
-            const res = await refreshApi.get(`${_urlApi('Auth')}/api/account/refresh/${getLastRefresh.value}`);
-            token.value = res.data.data.token;
-            useAuth().value.isAuthenticated = true;
-            getLastRefresh.value = res.data.data.refresh;
-            config.headers.Authorization = `Bearer ${res.data.data.token}`;
-            isRefreshToken = false;
-            return api(config); // Thực hiện lại yêu cầu ban đầu với token mới
-          } catch (e) {
-            logout();
-            isRefreshToken = false;
-          }
-        } else {
-          logout();
-          isRefreshToken = false;
-        }
       }
 
       return Promise.reject(error);
@@ -71,12 +47,8 @@ export default defineNuxtPlugin(() => {
 
   async function logout() {
     token.value = null;
-    useAuth().value.isAuthenticated = false;
     refresh.value = null;
     keyLocalStorage({ type: 'SET', key: 'userInfo', value: '{}' });
-    useAuth().value.userInfo = {};
-    useGlobal().value.Permission = '';
-    useGlobal().value.FeatureToggle = [];
   }
 
   return {

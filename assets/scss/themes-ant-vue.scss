@@ -1,0 +1,63 @@
+#components-layout-demo-custom-trigger .trigger {
+  font-size: 18px;
+  line-height: 64px;
+  padding: 0 24px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+#components-layout-demo-custom-trigger .trigger:hover {
+  color: #1890ff;
+}
+
+#components-layout-demo-custom-trigger .logo {
+  height: 32px;
+  margin: 16px;
+}
+
+.site-layout .site-layout-background {
+}
+.ant-layout-header {
+  background: var(--background)!important;
+  padding-inline: unset!important;
+  line-height: unset!important;
+  display: flex;
+  align-items: center;
+  padding: 5px 10px!important;
+  color: var(--text)!important;
+}
+.ant-layout-sider {
+  background: var(--background)!important;
+  color: var(--text)!important;
+}
+.ant-layout-content {
+  background: var(--background)!important;
+  color: var(--text)!important;
+}
+.product {
+  .ant-card-body {
+    background-color: var(--mainBgColor)!important;
+    &:hover {
+      border:1px solid #c08e25!important;
+    }
+  }
+}
+.theme-dark {
+  .ant-menu {
+    border-inline-end: 1px solid #858080!important;
+  }
+}
+.ant-menu {
+  background: var(--background)!important;
+  .ant-menu-item {
+    color: var(--text)!important;
+    &:hover {
+      color: var(--mainColor)!important;
+      background: var(--background)!important;
+    }
+  }
+  .ant-menu-item-selected {
+    color: var(--mainColorHover)!important;
+    background-color: var(--select)!important;
+  }
+}

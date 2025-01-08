@@ -3,6 +3,7 @@ export default defineNuxtConfig({
   experimental: {
     sharedPrerenderData: true
   },
+  ssr: true,
   css: [
     'vue-virtual-scroller/dist/vue-virtual-scroller.css',
     '@/assets/css/main.css',
@@ -33,7 +34,6 @@ export default defineNuxtConfig({
     }
   },
   components: true,
-  ssr: true,
   plugins: [
     { src: '~/plugins/axios', mode: 'client' },
     { src: '~/plugins/vue-image-crop-upload', mode: 'client' },
@@ -51,7 +51,8 @@ export default defineNuxtConfig({
     '@ant-design-vue/nuxt',
     'nuxt-build-cache',
     '@vueuse/nuxt',
-    '@nuxt/image'
+    '@nuxt/image',
+    '@nuxtjs/i18n'
   ],
   gtm: {
     id: 'GTM-NVZX6GQP',
@@ -69,5 +70,8 @@ export default defineNuxtConfig({
     config: {
       page_title: 'Phần mềm phân tích chứng khoán số 1 Việt Nam'
     }
+  },
+  i18n: {
+    vueI18n: './i18n.config.ts',
   }
 });
