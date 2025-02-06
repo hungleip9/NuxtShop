@@ -5,7 +5,7 @@
       <BaseImg :src="'/images/logo.png'" class="cursor-pointer w-[300px]"/>
     </NuxtLink>
     <div class="cursor-pointer">
-      <!-- <BaseIcon
+      <BaseIcon
         v-show="useConst().value.theme == 'dark'"
         icon="line-md:sun-rising-loop"
         @click="setTheme('light')"
@@ -14,7 +14,7 @@
         v-show="useConst().value.theme == 'light'"
         icon="line-md:sunny-outline-to-moon-loop-transition"
         @click="setTheme('dark')"
-      /> -->
+      />
     </div>
   </div>
 </template>
