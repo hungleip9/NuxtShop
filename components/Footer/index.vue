@@ -1,12 +1,29 @@
 <template>
-  <div class="w-full h-[500px] footer flex flex-row p-10">
-    <div class="w-[600px] h-full flex justify-center items-center">
+  <div class="w-full footer flex flex-row p-10">
+    <div class="w-[50%] h-full flex justify-center items-center">
         <BaseImg :src="'/images/logo-footer.png'" class="w-[250px] h-[auto]" />
     </div>
-    <div class="flex-1">
-      <a-row justify="space-between">
-        <a-col v-for="item in arrFooter" class="link" :span="7">
-          <NuxtLink :to="item.link"><span>{{ item.name }}</span></NuxtLink>
+    <div class="flex-1 flex items-center">
+      <a-row :gutter="[16,16]" justify="space-between" class="w-full">
+        <a-col :span="8">
+          <div class="flex items-center h-full">
+            <BaseIcon class="mr-2" icon="ic:baseline-phone"/> 0898562269
+          </div>
+        </a-col>
+        <a-col :span="8">
+          <div class="flex items-center h-full">
+            <BaseIcon class="mr-2" icon="grommet-icons:map"/> 197 - Hoàng Mai - Hà Nội
+          </div>
+        </a-col>
+        <a-col :span="8">
+          <div class="flex items-center h-full">
+            <BaseIcon class="mr-2" icon="ic:baseline-email"/> hunglq.dev@gmail.com
+          </div>
+        </a-col>
+        <a-col :span="8">
+          <div class="flex items-center h-full">
+            <BaseIcon class="mr-2" icon="material-symbols:developer-mode-tv"/> © 2023 Nuxt Shop
+          </div>
         </a-col>
       </a-row>
     </div>
@@ -14,56 +31,6 @@
 </template>
 
 <script setup>
-  const arrFooter = ref([
-    {
-      name: 'Vending machines',
-      link: '/vending-machines'
-    },
-    {
-      name: 'Office coffee',
-      link: '/office-coffee'
-    },
-    {
-      name: 'Vending machines',
-      link: '/vending-machines'
-    },
-    {
-      name: 'Office coffee',
-      link: '/office-coffee'
-    },
-    {
-      name: 'Vending machines',
-      link: '/vending-machines'
-    },
-    {
-      name: 'Office coffee',
-      link: '/office-coffee'
-    },
-    {
-      name: 'Vending machines',
-      link: '/vending-machines'
-    },
-    {
-      name: 'Office coffee',
-      link: '/office-coffee'
-    },
-    {
-      name: 'Vending machines',
-      link: '/vending-machines'
-    },
-    {
-      name: 'Office coffee',
-      link: '/office-coffee'
-    },
-    {
-      name: 'Vending machines',
-      link: '/vending-machines'
-    },
-    {
-      name: 'Office coffee',
-      link: '/office-coffee'
-    },
-  ])
 </script>
 
 <style lang="scss" scoped>

@@ -3,7 +3,7 @@ export default defineNuxtConfig({
   experimental: {
     sharedPrerenderData: true
   },
-  ssr: true,
+  ssr: false,
   css: [
     'vue-virtual-scroller/dist/vue-virtual-scroller.css',
     '@/assets/css/main.css',

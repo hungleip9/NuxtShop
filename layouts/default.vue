@@ -2,7 +2,7 @@
   <a-style-provider hash-priority="high">
     <div class="w-full h-full bg-themeBackground">
       <a-layout class="w-full h-full">
-        <a-layout-header>
+        <a-layout-header class="theme-light">
           <Header>
             <menu-unfold-outlined
               :style="{ fontSize: '25px' }"
@@ -19,24 +19,24 @@
           </Header>
         </a-layout-header>
         <a-layout>
-          <a-layout-sider v-model:collapsed="collapsed" :trigger="null" collapsible>
+          <a-layout-sider class="no-select" v-model:collapsed="collapsed" :trigger="null" collapsible>
             <div class="logo" />
             <a-menu class="h-full" v-model:selectedKeys="selectedKeys" mode="inline">
-              <a-menu-item key="1" @click="handleClick('product')">
+              <a-menu-item key="1" @click="handleClick('')">
                 <div class="flex flex-row items-center">
-                  <BaseIcon size="15" icon="fluent-mdl2:product" class="mr-2" />
+                  <CoffeeOutlined />
                   <span>Sản phẩm</span>
                 </div>
               </a-menu-item>
               <a-menu-item key="2" @click="handleClick('contact')">
                 <div class="flex flex-row items-center">
-                  <BaseIcon size="15" icon="hugeicons:contact-01" class="mr-2" />
+                  <PhoneOutlined />
                   <span>Liên hệ</span>
                 </div>
               </a-menu-item>
-              <a-menu-item key="3" @click="handleClick('about')">
+              <a-menu-item key="3" @click="handleClick('about-us')">
                 <div class="flex flex-row items-center">
-                  <BaseIcon size="15" icon="ix:about" class="mr-2" />
+                  <user-outlined />
                   <span>Về chúng tôi</span>
                 </div>
               </a-menu-item>

@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-full flex flex-row justify-between items-center">
+  <div class="w-full h-full flex flex-row justify-between items-center no-select">
     <slot />
     <NuxtLink to="/">
       <BaseImg :src="'/images/logo.png'" class="cursor-pointer w-[300px]"/>

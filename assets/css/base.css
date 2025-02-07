@@ -4,20 +4,27 @@
   --mainColorHover: #96701F;
   --text: #474d57;
   --select: #454545;
+  --background: #fafafa;
+  --backgroundHoverPagination: rgba(0, 0, 0, 0.06);
+  --paginationDisabled: rgba(0, 0, 0, 0.25);
 }
 
 .theme-light {
-  --background: #fff;
+  --background: #fafafa;
   --mainColor: #C08E25;
   --mainColorHover: #96701F;
   --text: #474d57;
   --select: #e5e5e5;
+  --backgroundHoverPagination: rgba(0, 0, 0, 0.06);
+  --paginationDisabled: rgba(0, 0, 0, 0.25);
 }
 
 .theme-dark {
-  --background: #252728;
+  --background: #161a1e;
   --mainColor: #efb742;
   --mainColorHover: #d7aa48;
   --text: #abb1bb;
   --select: #454545;
+  --backgroundHoverPagination: #514e4e;
+  --paginationDisabled: rgba(253, 253, 253, 0.541);
 }
