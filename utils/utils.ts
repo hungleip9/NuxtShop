@@ -35,7 +35,7 @@ export function _formatPriceVND(price: number) {
 }
 export function _handleAddToCart(id: any) {
   if (!id) {
-    _showMsg({type: 'error', summary: 'Thất bại', msg: 'Thêm vào giỏ hàng thất bại!'})
+    _showMsg({type: 'error', summary: 'Thất bại', msg: 'Thêm vào giỏ hàng thất bại!', placement: 'bootomRight'})
     return
   }
   let Cart = keyLocalStorage({ type: 'GET', key: "Cart"}) as any;
@@ -48,5 +48,19 @@ export function _handleAddToCart(id: any) {
     Cart[id]++
   }
   keyLocalStorage({ type: 'SET', key: "Cart", value: Cart})
-  _showMsg({type: 'success', summary: 'Thành công', msg: 'Thêm vào giỏ hàng thành công!'})
+  useConst().value.carts = Cart
+  _showMsg({type: 'success', summary: 'Thành công', msg: 'Thêm vào giỏ hàng thành công!', placement: 'bootomRight'})
+}
+export function _handleDeleteItemInCart(id: any) {
+  if (!id) {
+    _showMsg({type: 'error', summary: 'Thất bại', msg: 'Xóa vật phẩm thất bại!'})
+    return
+  }
+  let Cart = keyLocalStorage({ type: 'GET', key: "Cart"}) as any;
+  if (Cart[id]) {
+    delete Cart[id]
+  }
+  keyLocalStorage({ type: 'SET', key: "Cart", value: Cart})
+  useConst().value.carts = Cart
+  _showMsg({type: 'success', summary: 'Thành công', msg: 'Xóa sản phẩm thành công!', placement: 'bootomRight'})
 }

@@ -1,3 +1,13 @@
+<script lang="ts" setup>
+const selectedKeys = ref<string[]>(['1']);
+const collapsed = ref<boolean>(false);
+onMounted(async () => {
+});
+function handleClick(url: string) {
+  navigateTo(`/${url}`)
+}
+</script>
+
 <template>
   <a-style-provider hash-priority="high">
     <div class="w-full h-full bg-themeBackground">
@@ -25,19 +35,13 @@
               <a-menu-item key="1" @click="handleClick('')">
                 <div class="flex flex-row items-center">
                   <CoffeeOutlined />
-                  <span>Sản phẩm</span>
+                  <span>Menu</span>
                 </div>
               </a-menu-item>
-              <a-menu-item key="2" @click="handleClick('contact')">
+              <a-menu-item key="2" @click="handleClick('introduce')">
                 <div class="flex flex-row items-center">
-                  <PhoneOutlined />
-                  <span>Liên hệ</span>
-                </div>
-              </a-menu-item>
-              <a-menu-item key="3" @click="handleClick('about-us')">
-                <div class="flex flex-row items-center">
-                  <user-outlined />
-                  <span>Về chúng tôi</span>
+                  <UserSwitchOutlined />
+                  <span>Giới thiệu</span>
                 </div>
               </a-menu-item>
             </a-menu>
@@ -51,15 +55,3 @@
     </div>
   </a-style-provider>
 </template>
-<script lang="ts" setup>
-const selectedKeys = ref<string[]>(['1']);
-const collapsed = ref<boolean>(false);
-onMounted(async () => {
-});
-function handleClick(url: string) {
-  navigateTo(`/${url}`)
-}
-</script>
-
-<style lang="scss" scoped>
-</style>

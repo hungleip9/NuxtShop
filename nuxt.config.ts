@@ -37,7 +37,8 @@ export default defineNuxtConfig({
   plugins: [
     { src: '~/plugins/axios', mode: 'client' },
     { src: '~/plugins/vue-image-crop-upload', mode: 'client' },
-    { src: '~/plugins/vue-virtual-scroller', mode: 'client' }
+    { src: '~/plugins/vue-virtual-scroller', mode: 'client' },
+    { src: '~/plugins/first', mode: 'client' },
   ],
   runtimeConfig: {
     public: {
