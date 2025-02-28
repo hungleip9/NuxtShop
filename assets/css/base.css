@@ -1,7 +1,7 @@
 :root {
   --mainBgColor: #f6f1e3;
-  --mainColor: #C08E25;
-  --mainColorHover: #96701F;
+  --mainColor: #1677ff;
+  --mainColorHover: #69b1ff;
   --text: #474d57;
   --select: #454545;
   --background: #fafafa;
@@ -11,8 +11,8 @@
 
 .theme-light {
   --background: #fafafa;
-  --mainColor: #C08E25;
-  --mainColorHover: #96701F;
+  --mainColor: #1677ff;
+  --mainColorHover: #69b1ff;
   --text: #474d57;
   --select: #e5e5e5;
   --backgroundHoverPagination: rgba(0, 0, 0, 0.06);

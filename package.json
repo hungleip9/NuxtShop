@@ -13,8 +13,6 @@
     "ag-grid-vue3": "31.0.1",
     "axios": "1.6.8",
     "echarts": "5.5.0",
-    "firebase": "^9.17.1",
-    "firebase-admin": "^11.5.0",
     "ipx": "^3.0.1",
     "klinecharts": "9.8.10",
     "mqtt": "5.5.1",

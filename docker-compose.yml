@@ -2,8 +2,8 @@ version: '3.4'
 
 services:
   stockprowebapp:
-    container_name: stockpro-webapp
-    image: stockpro-webapp:1.0.496
+    container_name: nuxtShop
+    image: nuxtShop:1.0.496
     ports:
     - "3030:3000"
     environment:

@@ -64,3 +64,48 @@ export function _handleDeleteItemInCart(id: any) {
   useConst().value.carts = Cart
   _showMsg({type: 'success', summary: 'Thành công', msg: 'Xóa sản phẩm thành công!', placement: 'bootomRight'})
 }
+export function _pushParamsRouter(type: string, data: any) {
+  const router = useRouter()
+  const route = useRoute()
+  const currentQueryParams = { ...route.query, [type]: data };
+  router.push({
+    query: {
+      ...currentQueryParams
+    },
+  })
+}
+export function _pushParamsRouterArray(objTypeData: any = {}) {
+  if (!objTypeData || !Object.keys(objTypeData).length) return
+  const router = useRouter()
+  const route = useRoute()
+  let currentQueryParams = Object.assign({}, route.query, objTypeData)
+  router.push({
+    query: {
+      ...currentQueryParams
+    },
+  })
+}
+export function _deleteParamsRouter(arrType: string[]) {
+  const router = useRouter()
+  const route = useRoute()
+  let currentQueryParams = { ...route.query };
+  arrType.forEach(type => {
+    delete currentQueryParams[type];
+  })
+  router.push({
+    query: {
+      ...currentQueryParams,
+    },
+  });
+}
+// Router, popup
+export function _openModal(popupName: string) {
+  const { $event } = useNuxtApp();
+  $event("openModal", popupName);
+  useConst().value.hasPopup[popupName] = true
+}
+export function _closeModal(popupName: string) {
+  const { $event } = useNuxtApp();
+  $event("closeModal", popupName);
+  useConst().value.hasPopup[popupName] = false
+}

@@ -17,13 +17,13 @@ function handleClick(url: string) {
             <menu-unfold-outlined
               :style="{ fontSize: '25px' }"
               v-if="collapsed"
-              class="trigger main-color"
+              class="trigger"
               @click="() => (collapsed = !collapsed)"
             />
             <menu-fold-outlined
               :style="{ fontSize: '25px' }"
               v-else
-              class="trigger main-color"
+              class="trigger"
               @click="() => (collapsed = !collapsed)"
             />
           </Header>
