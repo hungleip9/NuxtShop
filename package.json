@@ -16,7 +16,6 @@
     "ipx": "^3.0.1",
     "klinecharts": "9.8.10",
     "mqtt": "5.5.1",
-    "nuxt-swiper": "1.2.2",
     "vue": "3.4.21",
     "vue-draggable-next": "2.1.1",
     "vue-image-crop-upload": "3.0.3",

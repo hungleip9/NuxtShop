@@ -46,7 +46,6 @@ export default defineNuxtConfig({
   },
   modules: [
     '@nuxtjs/device',
-    'nuxt-swiper',
     'nuxt-gtag',
     '@zadigetvoltaire/nuxt-gtm',
     '@ant-design-vue/nuxt',
