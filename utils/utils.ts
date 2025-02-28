@@ -33,7 +33,7 @@ export function _createId() {
 export function _formatPriceVND(price: number) {
   return price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
 }
-export function _handleAddToCart(id: any) {
+export function _handleAddToCart(id: any, dontShowMsg = false) {
   if (!id) {
     _showMsg({type: 'error', summary: 'Thất bại', msg: 'Thêm vào giỏ hàng thất bại!', placement: 'bootomRight'})
     return
@@ -49,6 +49,7 @@ export function _handleAddToCart(id: any) {
   }
   keyLocalStorage({ type: 'SET', key: "Cart", value: Cart})
   useConst().value.carts = Cart
+  if (dontShowMsg) return
   _showMsg({type: 'success', summary: 'Thành công', msg: 'Thêm vào giỏ hàng thành công!', placement: 'bootomRight'})
 }
 export function _handleDeleteItemInCart(id: any) {
@@ -63,6 +64,18 @@ export function _handleDeleteItemInCart(id: any) {
   keyLocalStorage({ type: 'SET', key: "Cart", value: Cart})
   useConst().value.carts = Cart
   _showMsg({type: 'success', summary: 'Thành công', msg: 'Xóa sản phẩm thành công!', placement: 'bootomRight'})
+}
+export function _handleMinusItemInCart(id: any) {
+  if (!id) return
+  let Cart = keyLocalStorage({ type: 'GET', key: "Cart"}) as any;
+  if (Cart[id]) {
+    Cart[id]--
+    if (Cart[id] == 0) {
+      delete Cart[id]
+    }
+  }
+  keyLocalStorage({ type: 'SET', key: "Cart", value: Cart})
+  useConst().value.carts = Cart
 }
 export function _pushParamsRouter(type: string, data: any) {
   const router = useRouter()

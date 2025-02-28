@@ -1,9 +1,10 @@
 <script setup lang="ts">
   const visible = ref(false);
+  const dataConst = useConst().value
   onMounted(() => {});
   function getItem(id: string, key: string) {
     if (!id || !key) return '';
-    const item = useConst().value.menu.find(e => e.id == id) || null;
+    const item = dataConst.menu.find(e => e.id == id) || null;
     if (!item) return '';
     return item[key];
   }
@@ -20,14 +21,14 @@
       <div class="ml-4">
         <a-dropdown :trigger="['click']" v-model:open="visible">
           <a class="ant-dropdown-link" @click.prevent>
-            <a-badge :count="Object.keys(useConst().value.carts).length">
+            <a-badge :count="Object.keys(dataConst.carts).length">
               <BaseIcon icon="mdi:cart-outline" />
             </a-badge>
           </a>
           <template #overlay>
             <a-menu>
-              <template v-if="Object.keys(useConst().value.carts).length">
-                <a-menu-item class="box-item" v-for="(key, index) in Object.keys(useConst().value.carts)" :key="index">
+              <template v-if="Object.keys(dataConst.carts).length">
+                <a-menu-item class="box-item w-[350px]" style="cursor: default;" v-for="(key, index) in Object.keys(dataConst.carts)" :key="index">
                   <CloseOutlined
                     class="absolute top-2 right-2 icon-delete"
                     :style="{ fontSize: '10px' }"
@@ -38,7 +39,15 @@
                       <BaseImg :src="getItem(key, 'photo')" class="w-[30px]" />
                       <b class="ml-2">{{ getItem(key, 'title') }}:</b>
                     </div>
-                    <span class="ml-2">số lượng {{ useConst().value.carts[key] }}</span>
+                    <div class="flex flex-row items-center">
+                      <div class="flex flex-row items-center">
+                        <div class="box-cong-tru tru mr-2" @click="_handleMinusItemInCart(key)">-</div>
+                        <div class="box-cong-tru cong" @click="_handleAddToCart(key, true)">+</div>
+                      </div>
+                      <div class="ml-2 count">
+                        {{ dataConst.carts[key] }}
+                      </div>
+                    </div>
                   </div>
                 </a-menu-item>
               </template>
@@ -58,6 +67,31 @@
     .icon-delete {
       color: red;
       display: none;
+    }
+    .count, .box-cong-tru {
+      text-align: center;
+      width: 25px;
+      border-radius: 4px;
+      background-color: rgb(236, 234, 234);
+      color: rgb(105, 105, 105);
+      font-weight: 700;
+    }
+    .box-cong-tru {
+      text-align: center;
+      cursor: pointer;
+      color: #fff;
+    }
+    .tru {
+      background-color: #ff4d4f;
+      &:hover {
+        background-color: #ff4d4f;
+      }
+    }
+    .cong {
+      background-color: #52c41a;
+      &:hover {
+        background-color: #52c41a;
+      }
     }
     &:hover {
       .icon-delete {
