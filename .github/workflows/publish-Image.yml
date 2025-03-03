@@ -13,5 +13,6 @@ jobs:
           docker build . -t hungleip9/nuxt-shop:latest
       - name: publish
         run: |
-          docker login -u hungleip9 -p ${{ secrets.DOCKER_HUB_TOKEN }}
+          echo "${{ secrets.DOCKER_HUB_TOKEN }}" | docker login -u hungleip9 --password-stdin
           docker push hungleip9/nuxt-shop:latest
+          docker image prune -f
