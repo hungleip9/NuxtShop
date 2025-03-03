@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
-        user: actions/checkout@v3
+        uses: actions/checkout@v3
       - name: build
         run: |
           docker build . -t hungleip9/nuxt-shop:latest
