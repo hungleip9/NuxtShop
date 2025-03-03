@@ -13,5 +13,5 @@ jobs:
           docker build . -t hungleip9/nuxt-shop:latest
       - name: publish
         run: |
-          docker login -u hungleip9 ${{ secrets.DOCKER_HUB_TOKEN }}
+          docker login -u hungleip9 $DOCKER_HUB_TOKEN
           docker push hungleip9/nuxt-shop:latest
