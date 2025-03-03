@@ -1,6 +1,9 @@
 name: Publish image to Docker Hub
-on: 
-  workflow_dispatch
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
 
 jobs:
   publish_image:
@@ -19,7 +22,8 @@ jobs:
       - name: Deploy to VPS
         run: |
           sshpass -p "${{ secrets.VPS_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
-            docker pull hungleip9/nuxt-shop:latest
             docker stop webnode || true
-            docker run --name webnode -itd --rm -p 80:3000 hungleip9/nuxt-shop:latest
+            docker rm webnode || true
+            docker pull hungleip9/nuxt-shop:latest
+            docker run --name webnode -itd -p 80:3000 hungleip9/nuxt-shop:latest
           EOF
