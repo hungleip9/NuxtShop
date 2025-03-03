@@ -32,6 +32,7 @@
                   <CloseOutlined
                     class="absolute top-2 right-2 icon-delete"
                     :style="{ fontSize: '10px' }"
+                    title="Xóa bỏ sản phẩm khỏi rỏ hàng"
                     @click="_handleDeleteItemInCart(key)"
                   />
                   <div class="flex flex-row items-center justify-between h-[60px]">
@@ -41,8 +42,8 @@
                     </div>
                     <div class="flex flex-row items-center">
                       <div class="flex flex-row items-center">
-                        <div class="box-cong-tru tru mr-2" @click="_handleMinusItemInCart(key)">-</div>
-                        <div class="box-cong-tru cong" @click="_handleAddToCart(key, true)">+</div>
+                        <div class="box-cong-tru tru mr-2" @click="_handleMinusItemInCart(key)" title="Trừ 1 số lượng sản phẩm">-</div>
+                        <div class="box-cong-tru cong" @click="_handleAddToCart(key, true)" title="Thêm 1 số lượng sản phẩm">+</div>
                       </div>
                       <div class="ml-2 count">
                         {{ dataConst.carts[key] }}
