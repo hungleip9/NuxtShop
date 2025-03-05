@@ -25,6 +25,5 @@ jobs:
       - name: Deploy to VPS
         run: |
           sshpass -p "${{ secrets.VPS_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
-            cd nuxt-shop-webapp || true
             docker-compose up --build -d
           EOF
