@@ -12,16 +12,18 @@ jobs:
       - name: checkout
         uses: actions/checkout@v3
       - name: build
+      - name: Created TAG date for image docker
+        run: echo "TAG=$(date +'%d-%m-%Y')" >> $GITHUB_ENV
         run: |
-          docker build . -t ${{ secrets.DOCKER_NAME_IMAGE }}:latest
+          docker build . -t ${{ secrets.DOCKER_NAME_IMAGE }}:${{ env.TAG }}
       - name: publish
         run: |
           echo "${{ secrets.DOCKER_HUB_TOKEN }}" | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
-          docker push ${{ secrets.DOCKER_NAME_IMAGE }}:latest
+          docker push ${{ secrets.DOCKER_NAME_IMAGE }}:${{ env.TAG }}
           docker image prune -f
       - name: Deploy to VPS
         run: |
           sshpass -p "${{ secrets.VPS_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
-            cd nuxt-shop-api || true
+            cd nuxt-shop-webapp || true
             docker-compose up --build -d
           EOF
