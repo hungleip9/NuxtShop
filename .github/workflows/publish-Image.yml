@@ -27,6 +27,6 @@ jobs:
           sshpass -p "${{ secrets.VPS_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
             docker stop webnode || true
             docker rm webnode || true
-            docker pull ${{ secrets.DOCKER_NAME_IMAGE }}:latest
-            docker run --name webnode -itd -p 80:3000 ${{ secrets.DOCKER_NAME_IMAGE }}:latest
+            docker pull ${{ secrets.DOCKER_NAME_IMAGE }}:${{ env.TAG }}
+            docker run --name webnode -itd -p 80:3000 ${{ secrets.DOCKER_NAME_IMAGE }}:${{ env.TAG }}
           EOF
