@@ -11,9 +11,10 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v3
-      - name: build
       - name: Created TAG date for image docker
-        run: echo "TAG=$(date +'%d-%m-%Y')" >> $GITHUB_ENV
+        run: |
+          echo "TAG=$(date +'%d-%m-%Y')" >> $GITHUB_ENV
+      - name: build
         run: |
           docker build . -t ${{ secrets.DOCKER_NAME_IMAGE }}:${{ env.TAG }}
       - name: publish
