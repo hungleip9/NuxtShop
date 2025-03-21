@@ -43,33 +43,7 @@ export default defineNuxtConfig({
   ],
   runtimeConfig: {
     public: {
-      baseUrlNews: '',
-      baseUrlAuth: '',
-      baseUrlEconomic: '',
-      baseUrlStockexchange: '',
-      baseUrlCommunity: '',
-      fileS3url: '',
-      connectWebsocketurl: '',
-      logo: '',
-      version: '',
-      qos: '',
-      timeReconnectMqtt: 0,
-      timeShowPopup: 0,
-      topic: [],
-      gtm: {
-        id: 'GTM-NVZX6GQP',
-        queryParams: {
-          gtm_auth: 'AB7cDEf3GHIjkl-MnOP8qr'
-        },
-        defer: false,
-        compatibility: false,
-        enabled: true,
-        debug: false,
-        loadScript: true,
-        enableRouterSync: true,
-        trackOnNextTick: false,
-        devtools: true
-      }
+      BASE_URLL: process.env.BASE_URL
     }
   },
 

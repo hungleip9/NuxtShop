@@ -1,7 +1,11 @@
 <script setup lang="ts">
+  import type { Rule } from 'ant-design-vue/es/form';
+  import type { FormInstance } from 'ant-design-vue';
+  import { login, register } from '~/services/auth';
   const route = useRoute();
   const loadingBtn = ref<boolean>(false);
   interface FormData {
+    UserName: string;
     FullName: string;
     PhoneNumber: number | null;
     Password: string;
@@ -12,6 +16,7 @@
     ReferalCode: string;
   }
   const formData = ref<FormData>({
+    UserName: '',
     FullName: '',
     PhoneNumber: null,
     Password: '',
@@ -22,6 +27,7 @@
     ReferalCode: '',
   });
   const dataConst = useConst().value;
+  const dataAuth = useAuth().value;
   const typeLogin = computed(() => {
     const str = route.query['login_type'];
     return str != undefined && str ? `${str}` : '';
@@ -41,7 +47,7 @@
   }
   const handleChangeTypeForRouter = useDebounceFn(
     async () => {
-      if (!typeLogin.value || dataConst.hasPopup['modal-login'] || useAuth().value.isAuthenticated) return;
+      if (!typeLogin.value || dataConst.hasPopup['modal-login'] || dataAuth.isAuthenticated) return;
       _openModal('modal-login');
     },
     200,
@@ -55,6 +61,7 @@
   }
   const resetForm = () => {
     formData.value = {
+      UserName: '',
       FullName: '',
       PhoneNumber: null,
       Password: '',
@@ -83,22 +90,77 @@
     }
     return str;
   }
+  async function handleLogin() {
+    const dataLogin = {
+      PhoneNumber: `${formData.value.PhoneNumber}` || '',
+      Password: formData.value.Password || ''
+    }
+    await login(dataLogin).then(async (res) => {
+      dataAuth.isAuthenticated = true
+      if (res.data.data.info) {
+        dataConst.userInfo = res.data.data.info
+      }
+      if (res.data.data.token) {
+        await keyLocalStorage({ type: 'SET', key: "token", value: res.data.data.token})
+      }
+      if (res.data.data.refresh) {
+        await keyLocalStorage({ type: 'SET', key: "refresh", value: res.data.data.refresh})
+      }
+      await _showMsg({type: 'success', summary: 'Thành công', msg: 'Đăng nhập thành công!', placement: 'bottomRight'})
+      _closeModal('modal-login')
+    }).catch(error => {
+      const messError = error?.response?.data?.messages || ''
+      _showMsg({type: 'error', summary: 'Thất bại', msg: messError, placement: 'bottomRight'})
+    })
+  }
+  async function handleRegister() {
+    const dataRegister = {
+      userName: formData.value.UserName,
+      phoneNumber:  formData.value.PhoneNumber ? `${formData.value.PhoneNumber}` : '',
+      email:  formData.value.Email,
+      password:  formData.value.PasswordNew,
+    }
+    await register(dataRegister).then(async (res) => {
+      dataAuth.isAuthenticated = true
+      if (res.data.data.info) {
+        dataConst.userInfo = res.data.data.info
+      }
+      if (res.data.data.token) {
+        await keyLocalStorage({ type: 'SET', key: "token", value: res.data.data.token})
+      }
+      if (res.data.data.refresh) {
+        await keyLocalStorage({ type: 'SET', key: "refresh", value: res.data.data.refresh})
+      }
+      await _showMsg({type: 'success', summary: 'Thành công', msg: 'Đăng ký thành công!', placement: 'bottomRight'})
+      _closeModal('modal-login')
+    }).catch(error => {
+      const messError = error?.response?.data?.messages || ''
+      _showMsg({type: 'error', summary: 'Thất bại', msg: messError, placement: 'bottomRight'})
+    })
+  }
   async function handleSubmit() {
     loadingBtn.value = true;
-    await _closeModal('modal-login')
-    let msg = 'Đăng nhập thành công!'
-    if (typeLogin.value == 'signup') {
-      msg = 'Đăng ký thành công!'
+    if (typeLogin.value == 'login') {
+      await handleLogin()
     }
-    await _showMsg({type: 'success', summary: 'Thành công', msg: msg})
+    if (typeLogin.value == 'signup') {
+      await handleRegister()
+    }
     loadingBtn.value = false;
   }
   const checkPassConrfrim = (value: string) => {
     if (typeLogin.value == 'signup' && value !== formData.value.Password) return true
   }
+  const validateUserName = (_rule: any, value: any) => {
+    if (!value) {
+      return Promise.reject('Bạn chưa nhập tên tài khoản!');
+    } else {
+      return Promise.resolve();
+    }
+  };
   const validateFullName = (_rule: any, value: any) => {
     if (!value) {
-      return Promise.reject('Bạn chưa họ và tên!');
+      return Promise.reject('Bạn chưa nhập họ và tên!');
     } else {
       return Promise.resolve();
     }
@@ -153,6 +215,7 @@
     }
   };
   const rules: Record<string, Rule[]> = {
+    UserName: [{ required: true, validator: validateUserName, trigger: 'change' }],
     FullName: [{ required: true, validator: validateFullName, trigger: 'change' }],
     PhoneNumber: [{ required: true, validator: validatePhoneNumber, trigger: 'change' }],
     Password: [{ required: true, validator: validatePassword, trigger: 'change' }],
@@ -186,6 +249,11 @@
         <a-form-item v-if="typeLogin == 'signup'" name="FullName">
           <VInputText size="large" placeholder="Họ và tên" v-model="formData.FullName">
             <BaseIcon icon="bi:person" />
+          </VInputText>
+        </a-form-item>
+        <a-form-item name="UserName" v-if="typeLogin == 'signup'">
+          <VInputText size="large" placeholder="Tên tài khoản" v-model="formData.UserName">
+            <BaseIcon icon="material-symbols-light:person-edit-outline" />
           </VInputText>
         </a-form-item>
         <a-form-item name="PhoneNumber">

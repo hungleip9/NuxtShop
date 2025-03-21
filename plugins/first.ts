@@ -1,6 +1,8 @@
-export default defineNuxtPlugin(() => {
+import { info } from '~/services/auth';
+export default defineNuxtPlugin(async () => {
+  const dataConst = useConst().value;
   for (let index = 0; index < 50; index++) {
-    useConst().value.menu.push({
+    dataConst.menu.push({
       id: index + 1,
       title: `Cà phê kem muối ${index}`,
       description: 'Ngon và lành',
@@ -17,5 +19,24 @@ export default defineNuxtPlugin(() => {
   }
 
   const Cart = keyLocalStorage({ type: 'GET', key: "Cart"}) as any;
-  useConst().value.carts = Cart
+  dataConst.carts = Cart
+  await handleGetInfoUser()
 })
+async function handleGetInfoUser() {
+  const dataConst = useConst().value;
+  const dataAuth = useAuth().value;
+  const token = await keyLocalStorage({ type: 'GET', key: "token"})
+  if (!token) return
+  await info().then(res => {
+    dataAuth.isAuthenticated = true
+    if (res?.data?.data?.info) {
+      dataConst.userInfo = res.data.data.info
+    }
+  }).catch(async (error) => {
+    const messError = error?.response?.data?.messages || 'Có lỗi xảy ra'
+    console.log(messError);
+    await _showMsg({type: 'error', summary: 'Thất bại', msg: messError, placement: 'bottomRight'})
+    dataAuth.isAuthenticated = false
+    dataConst.userInfo = null
+  })
+}
