@@ -19,7 +19,7 @@ const { data: dataItem } = await useAsyncData(async () => {
   <div class="p-20">
     <div class="flex flex-row">
       <div class="w-[50%]">
-        <BaseImg class="w-[600px]" :src="dataItem.photo"/>
+        <img class="w-[600px]" :src="dataItem.photo"/>
       </div>
       <div class="flex-1 leading-none">
         <b class="text-6xl">{{dataItem.title}}</b>
@@ -40,7 +40,7 @@ const { data: dataItem } = await useAsyncData(async () => {
           <p v-else>{{ dataItem.story }}</p>
         </div>
         <div class="flex-1">
-            <BaseImg class="w-[100%] h-full" :src="dataItem.photo"/>
+            <img class="w-[100%] h-full" :src="dataItem.photo"/>
         </div>
       </div>
     </div>

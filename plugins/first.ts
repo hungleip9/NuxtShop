@@ -1,4 +1,4 @@
-import { info } from '~/services/auth';
+import { getInfo } from '~/services/auth';
 export default defineNuxtPlugin(async () => {
   const dataConst = useConst().value;
   for (let index = 0; index < 50; index++) {
@@ -20,23 +20,10 @@ export default defineNuxtPlugin(async () => {
 
   const Cart = keyLocalStorage({ type: 'GET', key: "Cart"}) as any;
   dataConst.carts = Cart
-  await handleGetInfoUser()
+  handleCallFirstApi();
 })
-async function handleGetInfoUser() {
-  const dataConst = useConst().value;
-  const dataAuth = useAuth().value;
-  const token = await keyLocalStorage({ type: 'GET', key: "token"})
-  if (!token) return
-  await info().then(res => {
-    dataAuth.isAuthenticated = true
-    if (res?.data?.data?.info) {
-      dataConst.userInfo = res.data.data.info
-    }
-  }).catch(async (error) => {
-    const messError = error?.response?.data?.messages || 'Có lỗi xảy ra'
-    console.log(messError);
-    await _showMsg({type: 'error', summary: 'Thất bại', msg: messError, placement: 'bottomRight'})
-    dataAuth.isAuthenticated = false
-    dataConst.userInfo = null
-  })
+async function handleCallFirstApi() {
+  await Promise.all([
+    await getInfo()
+  ]).then(() => {});
 }

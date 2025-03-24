@@ -1,7 +1,7 @@
 <template>
   <div class="w-full footer flex flex-row p-10 h-[20vh]">
     <div class="w-[50%] h-full flex justify-center items-center">
-        <BaseImg :src="'/images/logo-footer.png'" class="w-[100px] h-[auto]" />
+        <img :src="'images/logo-footer.png'" class="w-[100px] h-[auto]" />
     </div>
     <div class="flex-1 flex items-center">
       <a-row :gutter="[16,16]" justify="space-between" class="w-full">

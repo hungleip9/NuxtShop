@@ -14,7 +14,7 @@
   <div class="w-full h-full flex flex-row justify-between items-center no-select p-4">
     <slot />
     <NuxtLink to="/">
-      <BaseImg :src="'/images/logo.png'" class="cursor-pointer w-[300px]" />
+      <img :src="'/images/logo.png'" class="cursor-pointer w-[300px]" />
     </NuxtLink>
     <div class="flex flex-row">
       <Login />
@@ -37,7 +37,7 @@
                   />
                   <div class="flex flex-row items-center justify-between h-[60px]">
                     <div class="flex flex-row items-center">
-                      <BaseImg :src="getItem(key, 'photo')" class="w-[30px]" />
+                      <img :src="getItem(key, 'photo')" class="w-[30px]" />
                       <b class="ml-2">{{ getItem(key, 'title') }}:</b>
                     </div>
                     <div class="flex flex-row items-center">

@@ -27,8 +27,8 @@ function detailProduct(id: string) {
   <div class="w-full h-auto pt-0">
     <a-row class="pl-20 pt-5">
       <a-col v-for="item in arrContent" class="product" :span="6">
-        <a-card hoverable style="width: 300px; height: 350px" @click="detailProduct(item.id)">
-          <BaseImg class="w-full h-[250px] object-contain mb-2" :src="item.photo" />
+        <a-card hoverable @click="detailProduct(item.id)">
+          <img class="w-full h-[250px] object-contain mb-2" :src="item.photo" />
           <a-card-meta :title="item.title">
             <template #description>{{ item.description }}</template>
           </a-card-meta>
@@ -47,7 +47,7 @@ function detailProduct(id: string) {
     <div class="box-content mt-4">
       <div class="flex flex-row mb-20">
         <div class="box-img w-[45%] mr-12">
-          <BaseImg
+          <img
             class="rounded-lg"
             :src="'https://www.coffeeaddress.com/storage/files/shutterstock-739399771-1200x_.jpg?token=e02ef25b6e1a0182a615ae280318d140'"
           />
@@ -69,7 +69,7 @@ function detailProduct(id: string) {
           <div class="text-xl leading-8">Mang đến cho khách hàng không gian ấm cúng, thoải mái để tận hưởng những ly cà phê chất lượng, được pha chế từ những hạt cà phê tuyển chọn. Chúng tôi không chỉ phục vụ đồ uống mà còn tạo ra những khoảnh khắc thư giãn, kết nối và cảm hứng trong cuộc sống hàng ngày.</div>
         </div>
         <div class="box-img flex-1">
-          <BaseImg
+          <img
             class="rounded-lg"
             :src="'https://www.foodrepublic.com/img/gallery/what-instant-coffee-is-actually-made-of/l-intro-1695738252.jpg'"
           />

@@ -2,7 +2,7 @@
   <div class="w-full h-full flex flex-col justify-center items-center page-error">
     <div class="logo">
       <a href="/" class="">
-        <BaseImg src="/images/logo-full.png" class="mb-6 cursor-pointer w-[150px]"/>
+        <img src="/images/logo-full.png" class="mb-6 cursor-pointer w-[150px]"/>
       </a>
     </div>
     <div class="error-container">
