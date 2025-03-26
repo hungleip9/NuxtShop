@@ -26,6 +26,4 @@ async function handleCallFirstApi() {
   await Promise.all([
     await getInfo()
   ]).then(() => {});
-  const axios = useNuxtApp().$axios;
-  await axios.get(`http://192.168.2.100:30002/api/tin-tuc/menu?isMarket=true`)
 }
