@@ -2,7 +2,8 @@ import axios from 'axios';
 
 export default defineNuxtPlugin(async () => {
   const configRunTime = useRuntimeConfig();
-  const baseUrl = configRunTime.public.BASE_URLL ? `${configRunTime.public.BASE_URLL}` : '';
+  const baseUrl = configRunTime.public.BASE_URL ? `${configRunTime.public.BASE_URL}` : '';
+  console.log('configRunTime: ', configRunTime)
   const token = keyLocalStorage({ type: 'GET', key: 'token' });
   useAuth().value.isAuthenticated = token ? true : false;
   const api = axios.create({
