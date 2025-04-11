@@ -1,13 +1,24 @@
-node_modules
-*.log*
+# Nuxt dev/build outputs
+.output
+.data
 .nuxt
 .nitro
 .cache
-.output
+dist
+
+# Node dependencies
+node_modules
+
+# Logs
+logs
+*.log
+
+# Misc
 .DS_Store
-yarn.lock
+.fleet
+.idea
+
+# Local env files
 .env
-/.vs
-package-lock.json
-pnpm-lock.yaml
-Nuxt-SHOP/
+.env.*
+!.env.example
