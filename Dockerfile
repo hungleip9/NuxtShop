@@ -1,33 +1,32 @@
 # Dockerfile
-FROM node:20.15.1-alpine
+FROM node:20.15.1-alpine AS build
+WORKDIR /app
 
-# Tạo thư mục làm việc
-RUN mkdir -p /usr/src/nuxt-app
-WORKDIR /usr/src/nuxt-app
-
-# Cài đặt các gói cần thiết cho Alpine Linux
-RUN apk update && apk upgrade && apk add --no-cache
-RUN apk add git
-
+RUN corepack enable
 # Thiết lập bộ nhớ tối đa cho Node.js
 ENV NODE_OPTIONS="--max-old-space-size=8096"
 
-# Copy package.json và package-lock.json trước để tối ưu cache layer Docker
-COPY package*.json ./
-RUN npm install
+# Copy package.json and your lockfile, here we add pnpm-lock.yaml for illustration
+COPY package.json pnpm-lock.yaml .npmrc ./
 
-# Copy toàn bộ mã nguồn
-COPY . .
+# Install dependencies
+RUN pnpm i
 
-# Build dự án
-RUN npm run build
+# Copy the entire project
+COPY . ./
 
-# Expose cổng 3000
-EXPOSE 3000
+# Build the project
+RUN pnpm run build
 
-# Thiết lập biến môi trường
-ENV NUXT_HOST=0.0.0.0
-ENV NUXT_PORT=3000
+# Build Stage 2
 
-# Chạy ứng dụng
-CMD [ "npm", "run", "preview" ]
+FROM node:20.15.1-alpine
+WORKDIR /app
+
+# Change the port and host
+ENV PORT 80
+ENV HOST 0.0.0.0
+
+EXPOSE 80
+
+CMD ["node", "/app/server/index.mjs"]
