@@ -1,10 +1,9 @@
-# Dockerfile
-FROM node:20.15.1-alpine AS build
+# Build Stage 1
+
+FROM node:22-alpine AS build
 WORKDIR /app
 
 RUN corepack enable
-# Thiết lập bộ nhớ tối đa cho Node.js
-ENV NODE_OPTIONS="--max-old-space-size=8096"
 
 # Copy package.json and your lockfile, here we add pnpm-lock.yaml for illustration
 COPY package.json pnpm-lock.yaml .npmrc ./
@@ -20,8 +19,11 @@ RUN pnpm run build
 
 # Build Stage 2
 
-FROM node:20.15.1-alpine
+FROM node:22-alpine
 WORKDIR /app
+
+# Only `.output` folder is needed from the build stage
+COPY --from=build /app/.output/ ./
 
 # Change the port and host
 ENV PORT 80

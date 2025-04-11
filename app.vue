@@ -8,7 +8,7 @@
 </template>
 <script lang="ts" setup>
 useSeoMeta({
-  title: 'Nuxt Shop cà phê ngon số 1 Việt nam',
+  title: 'Nuxt Shop cà phê ngon số 1 Việt nam luôn',
   ogTitle: 'Nuxt Shop cà phê ngon số 1 Việt nam',
   description: 'Nuxt Shop cà phê ngon số 1: Với công thức ngon hàng đầu Việt Nam',
   ogDescription: 'Nuxt Shop cà phê ngon số 1: Với công thức ngon hàng đầu Việt Nam',
